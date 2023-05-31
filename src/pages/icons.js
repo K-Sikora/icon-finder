@@ -134,13 +134,13 @@ export default function Icons() {
                   data-link={filteredIcon.url}
                   data-purp="icon-element"
                   key={index}
-                  className="w-24 h-24 md:w-28 md:h-28 p-2 flex flex-col cursor-pointer gap-2 text-gray-50 rounded-lg duration-150 hover:bg-indigo-600 hover:shadow-lg shadow-black hover:text-white items-center justify-center "
+                  className="w-24 h-24 md:w-28 md:h-28 p-3 flex flex-col cursor-pointer gap-2 text-gray-50 rounded-lg duration-150 hover:bg-indigo-600 hover:shadow-lg shadow-black hover:text-white items-center justify-center "
                 >
                   <img
-                    className="w-full h-full p-2  pointer-events-none"
+                    className="w-full h-full p-3  pointer-events-none"
                     src={`${filteredIcon.url}`}
                   ></img>
-                  <h2 className="text-xs w-20 md:w-24 pb-2 text-truncate md:font-bold text-center md:text-xs pointer-events-none">
+                  <h2 className="text-xs w-20 md:w-24 -mt-3 pb-5 text-truncate md:font-bold text-center md:text-xs pointer-events-none">
                     {filteredIcon.name
                       .toLowerCase()
                       .substring(0, filteredIcon.name.indexOf("."))}
