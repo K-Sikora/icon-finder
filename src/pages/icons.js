@@ -61,7 +61,7 @@ export default function Icons() {
         reader.readAsDataURL(blob);
       })
       .catch((error) => {
-        console.error("Błąd podczas pobierania pliku SVG:", error);
+        console.error("Error occurred while downloading SVG", error);
       });
   };
   const handleCopyIconUrl = () => {
@@ -97,10 +97,10 @@ export default function Icons() {
             onChange={(e) => {
               setFiltered(e.target.value);
             }}
-            className="w-full focus:bg-indigo-900 text-lg font-semibold text-white outline-none duration-150 rounded-t-lg px-6 h-16 bg-indigo-950 "
+            className="w-full focus:border-indigo-400 text-lg font-semibold text-white outline-none duration-150 rounded-t-xl px-6 h-16 bg-transparent border-2 border-indigo-300 "
             placeholder="Search icons"
           ></input>
-          <button className="absolute right-0 w-16 rounded-tr-lg bg-indigo-600/30  h-full top-1/2 -translate-y-1/2 flex items-center justify-center">
+          <button className="absolute right-0 w-16 h-full top-1/2 -translate-y-1/2 flex items-center justify-center">
             <img
               className=""
               src="./search.svg"
@@ -115,7 +115,7 @@ export default function Icons() {
               setIsOpen(true);
             }
           }}
-          className={`min-h-screen grid-cols-3 relative sm:grid-cols-5 grid md:grid-cols-6 lg:grid-cols-7 place-content-start justify-items-center gap-4 w-full rounded-b-lg py-4 px-2 bg-gradient-to-r from-indigo-300/40 to-indigo-300/50 backdrop-blur-xl`}
+          className={`min-h-screen grid-cols-3 relative sm:grid-cols-5 grid md:grid-cols-6 lg:grid-cols-7 place-content-start justify-items-center gap-4 w-full rounded-b-xl py-4 px-2 bg-gradient-to-r from-indigo-300/40 to-indigo-300/50 backdrop-blur-xl`}
         >
           {isLoading ? (
             <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full">

@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
-
+import { motion } from "framer-motion";
 const Navbar = () => {
   return (
     <header
@@ -20,16 +20,20 @@ const Navbar = () => {
 
         <div className="flex items-center gap-6">
           <Link href="https://github.com/K-Sikora">
-            <img
-              className="w-7 h-7"
+            <motion.img
+              whileHover={{ scale: 0.9 }}
+              transition={{ duration: 0.1 }}
+              className="w-7 h-7 "
               src="./github.svg"
-            ></img>
+            ></motion.img>
           </Link>
           <Link href="https://krzysztofsikora.com">
-            <img
+            <motion.img
+              whileHover={{ scale: 0.9 }}
+              transition={{ duration: 0.1 }}
               className="w-7 h-7"
               src="./web.svg"
-            ></img>
+            ></motion.img>
           </Link>
         </div>
       </div>

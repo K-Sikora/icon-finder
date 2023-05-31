@@ -5,13 +5,13 @@ const inter = Inter({ subsets: ["latin"] });
 const Examples = () => {
   return (
     <div
-      className={`${inter.className} max-w-6xl mx-auto flex flex-col gap-6 pb-24`}
+      className={`${inter.className} max-w-6xl mx-auto flex flex-col gap-3 md:gap-6 pb-24`}
     >
-      <h2 className="text-center text-4xl font-black tracking-wide text-white">
+      <h2 className="text-center text-2xl md:text-4xl font-black tracking-wide text-white">
         This library contains
       </h2>
-      <div className="flex items-center justify-center w-full gap-10 h-full ">
-        <div className="w-1/2 h-[500px]  relative rounded-xl  flex flex-col gap-8 items-center justify-center">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full gap-5 md:gap-10 h-full ">
+        <div className="w-full md:w-1/2 h-[500px]  relative rounded-xl  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
             <h3 className="text-3xl font-bold tracking-wide text-white">
               Brand icons
@@ -78,7 +78,7 @@ const Examples = () => {
             </div>
           </div>
         </div>
-        <div className="w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
+        <div className="w-full md:w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
             <h3 className="text-3xl font-bold tracking-wide text-white">
               Social icons
@@ -145,10 +145,9 @@ const Examples = () => {
             </div>
           </div>
         </div>
-        {/*  */}
       </div>
-      <div className="flex items-center justify-center w-full gap-12 h-full">
-        <div className="w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full gap-12 h-full">
+        <div className="w-full md:w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
             <h3 className="text-3xl font-bold tracking-wide text-white">
               Solid icons
@@ -215,7 +214,7 @@ const Examples = () => {
             </div>
           </div>
         </div>
-        <div className="w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
+        <div className="w-full md:w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
             <h3 className="text-3xl font-bold tracking-wide text-white">
               Outline icons
