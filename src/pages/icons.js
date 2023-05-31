@@ -134,13 +134,13 @@ export default function Icons() {
                   data-link={filteredIcon.url}
                   data-purp="icon-element"
                   key={index}
-                  className="w-24 h-24 md:w-28 md:h-28 p-3 flex flex-col cursor-pointer gap-2 text-gray-50 rounded-lg duration-150 hover:bg-indigo-600 hover:shadow-lg shadow-black hover:text-white items-center justify-center "
+                  className="w-24 relative h-24 md:w-28 md:h-28 p-3 flex flex-col cursor-pointer gap-2 text-gray-50 rounded-lg duration-150 hover:bg-indigo-600 hover:shadow-lg shadow-black hover:text-white items-center justify-center "
                 >
                   <img
-                    className="w-full h-full p-3  pointer-events-none"
+                    className="h-full w-full p-5  pointer-events-none"
                     src={`${filteredIcon.url}`}
                   ></img>
-                  <h2 className="text-xs w-20 md:w-24 -mt-3 pb-5 text-truncate md:font-bold text-center md:text-xs pointer-events-none">
+                  <h2 className="text-xs absolute bottom-1.5 w-20  text-truncate md:font-bold text-center md:text-xs pointer-events-none">
                     {filteredIcon.name
                       .toLowerCase()
                       .substring(0, filteredIcon.name.indexOf("."))}
@@ -172,13 +172,13 @@ export default function Icons() {
                   <div
                     title={currentlyOpenName}
                     style={{ background: color }}
-                    className={`w-32 h-32 p-5 gap-2 md:w-40 md:h-40 flex flex-col cursor-pointer   rounded-lg duration-150    items-center justify-between `}
+                    className={`w-32 h-32 relative p-8 gap-2 md:w-40 md:h-40 flex flex-col cursor-pointer   rounded-lg duration-150    items-center justify-between `}
                   >
                     <img
-                      className="w-4/6 h-4/6 md:w-3/4 md:h-3/4"
+                      className="w-full h-full"
                       src={currentlyOpenUrl}
                     ></img>
-                    <h2 className="text-sm md:text-base font-semibold text-white text-truncate w-28 text-center">
+                    <h2 className=" absolute bottom-1.5 text-sm md:text-base font-semibold text-white text-truncate w-28 text-center">
                       {currentlyOpenName}
                     </h2>
                   </div>
