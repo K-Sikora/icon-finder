@@ -13,7 +13,7 @@ const Examples = () => {
       <div className="flex flex-col md:flex-row items-center justify-center w-full gap-5 md:gap-10 h-full ">
         <div className="w-full md:w-1/2 h-[500px]  relative rounded-xl  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
-            <h3 className="text-3xl font-bold tracking-wide text-white">
+            <h3 className="text-xl md:text-3xl font-bold tracking-wide text-white">
               Brand icons
             </h3>
           </div>
@@ -80,7 +80,7 @@ const Examples = () => {
         </div>
         <div className="w-full md:w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
-            <h3 className="text-3xl font-bold tracking-wide text-white">
+            <h3 className="text-xl md:text-3xl font-bold tracking-wide text-white">
               Social icons
             </h3>
           </div>
@@ -149,7 +149,7 @@ const Examples = () => {
       <div className="flex flex-col md:flex-row items-center justify-center w-full gap-12 h-full">
         <div className="w-full md:w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
-            <h3 className="text-3xl font-bold tracking-wide text-white">
+            <h3 className="text-xl md:text-3xl font-bold tracking-wide text-white">
               Solid icons
             </h3>
           </div>
@@ -216,7 +216,7 @@ const Examples = () => {
         </div>
         <div className="w-full md:w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
-            <h3 className="text-3xl font-bold tracking-wide text-white">
+            <h3 className="text-xl md:text-3xl font-bold tracking-wide text-white">
               Outline icons
             </h3>
           </div>

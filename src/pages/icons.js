@@ -166,18 +166,19 @@ export default function Icons() {
                     setIsOpenSketchPicker(false);
                   }
                 }}
-                className="w-full h-full rounded-lg relative bg-dialog gap-6 flex flex-col justify-center pb-40"
+                className="w-full h-full rounded-lg relative bg-dialog gap-6 flex flex-col justify-center pb-52 md:pb-40"
               >
                 <div className="flex self-center flex-col gap-3 items-center justify-center ">
                   <div
+                    title={currentlyOpenName}
                     style={{ background: color }}
-                    className={`w-32 h-32 p-5 gap-2 md:w-40 md:h-40 flex flex-col cursor-pointer  text-gray-900 rounded-lg duration-150 hover:bg-indigo-600 bg-indigo-500 hover:text-white items-center justify-between `}
+                    className={`w-32 h-32 p-5 gap-2 md:w-40 md:h-40 flex flex-col cursor-pointer   rounded-lg duration-150    items-center justify-between `}
                   >
                     <img
-                      className="w-full h-full"
+                      className="w-4/6 h-4/6 md:w-3/4 md:h-3/4"
                       src={currentlyOpenUrl}
                     ></img>
-                    <h2 className="text-sm md:text-base font-semibold pb-2 text-truncate w-28 text-center">
+                    <h2 className="text-sm md:text-base font-semibold text-white text-truncate w-28 text-center">
                       {currentlyOpenName}
                     </h2>
                   </div>
