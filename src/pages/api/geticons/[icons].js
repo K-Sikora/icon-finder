@@ -11,11 +11,12 @@ const firebaseConfig = {
 };
 
 export default async function handler(req, res) {
+  const icons = req.query.icons;
   initializeApp(firebaseConfig);
   const storage = getStorage();
 
   try {
-    const storageRef = ref(storage);
+    const storageRef = ref(storage, icons);
     const fileList = await listAll(storageRef);
 
     const fileData = await Promise.all(

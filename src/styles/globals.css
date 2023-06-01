@@ -20,3 +20,9 @@ body {
   word-break: break-all;
   overflow-wrap: break-word;
 }
+@media screen and (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+    background-size: cover;
+  }
+}

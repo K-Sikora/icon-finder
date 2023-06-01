@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
+import { RadioGroup } from "@headlessui/react";
 import { Inter } from "next/font/google";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { SketchPicker } from "react-color";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-scroll";
@@ -9,6 +12,7 @@ import Loader from "@/components/Loader";
 import Layout from "@/Layouts/Layout";
 const inter = Inter({ subsets: ["latin"] });
 export default function Icons() {
+  let [selectedIcons, setSelectedIcons] = useState("social");
   const [copied, setCopied] = useState(false);
   const [currentlyOpenName, setCurrentlyOpenName] = useState("");
   const [currentlyOpenUrl, setCurrentlyOpenUrl] = useState("");
@@ -19,14 +23,19 @@ export default function Icons() {
   let [isOpen, setIsOpen] = useState(false);
   const getAllIcons = async () => {
     try {
-      const response = await axios.get("/api/getallicons");
+      const response = await axios.get(`/api/geticons/${selectedIcons}`);
       return response.data;
     } catch (err) {
       console.log(err);
     }
   };
 
-  const { data: allIcons, isLoading } = useQuery({
+  const {
+    data: allIcons,
+    isLoading,
+    refetch,
+    isRefetching,
+  } = useQuery({
     queryKey: "allIcons",
     queryFn: getAllIcons,
     refetchOnWindowFocus: false,
@@ -40,7 +49,9 @@ export default function Icons() {
     }
   }, [allIcons, filtered]);
   const [color, setColor] = useState("#818cf8");
-
+  useEffect(() => {
+    refetch();
+  }, [selectedIcons]);
   const handleColorChange = (selectedColor) => {
     setColor(selectedColor.hex);
   };
@@ -84,29 +95,139 @@ export default function Icons() {
   return (
     <Layout>
       <div
-        className={` ${inter.className} flex flex-col w-full px-3 sm:px-5 xl:px-10 py-10 items-center justify-center  mx-auto`}
+        className={` ${inter.className} flex flex-col gap-5 w-full px-3 sm:px-5 xl:px-10 py-10 items-center justify-center  mx-auto`}
       >
-        <h3
-          id="top"
-          className="w-full py-4 text-sm font-semibold text-white "
-        >
-          Showing {filteredIconsLength} icons
-        </h3>
+        {isRefetching || isLoading ? (
+          <span className="w-44 self-start h-4 text-sm font-semibold text-white">
+            <SkeletonTheme
+              baseColor="#4338ca"
+              highlightColor="#a5b4fc"
+            >
+              <Skeleton />
+            </SkeletonTheme>
+          </span>
+        ) : (
+          <h3
+            id="top"
+            className="w-full h-4 text-sm font-semibold text-white "
+          >
+            Showing {filteredIconsLength} {selectedIcons} icons
+          </h3>
+        )}
+
         <div className="w-full relative flex flex-col gap-3">
           <input
             onChange={(e) => {
               setFiltered(e.target.value);
             }}
-            className="w-full focus:border-indigo-400 text-lg font-semibold text-white outline-none duration-150 rounded-t-xl px-6 h-16 bg-transparent border-2 border-indigo-300 "
-            placeholder="Search icons"
+            className="w-full text-sm md:text-lg font-semibold text-white outline-none duration-150 rounded-xl px-3 md:px-6 h-12 md:h-16  bg-indigo-950"
+            placeholder={`Search ${selectedIcons} icons`}
           ></input>
-          <button className="absolute right-0 w-16 h-full top-1/2 -translate-y-1/2 flex items-center justify-center">
+          <button className="absolute bg-indigo-900 rounded-r-xl right-0 w-12 md:w-16 h-full top-1/2 -translate-y-1/2 flex items-center justify-center">
             <img
               className=""
               src="./search.svg"
             ></img>
           </button>
         </div>
+
+        <RadioGroup
+          value={selectedIcons}
+          onChange={setSelectedIcons}
+          className="flex  border-2 border-indigo-300/20 self-start rounded-xl"
+        >
+          <RadioGroup.Option
+            className="first:rounded-l-xl last:rounded-r-xl"
+            value="social"
+          >
+            {({ checked }) => (
+              <button
+                disabled={isRefetching || isLoading}
+                className={`${
+                  isRefetching || isLoading
+                    ? " cursor-default pointer-events-none"
+                    : ""
+                } ${
+                  checked
+                    ? "bg-indigo-950 text-indigo-500"
+                    : "border-transparent"
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11 text-white font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
+              >
+                Social
+              </button>
+            )}
+          </RadioGroup.Option>
+          <RadioGroup.Option
+            className="first:rounded-l-xl last:rounded-r-xl"
+            value="brand"
+          >
+            {({ checked }) => (
+              <button
+                disabled={isRefetching || isLoading}
+                className={`
+                ${
+                  isRefetching || isLoading
+                    ? " cursor-default pointer-events-none"
+                    : ""
+                }
+                ${
+                  checked
+                    ? "bg-indigo-950 text-indigo-500"
+                    : "border-transparent"
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11 text-white font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950 `}
+              >
+                Brand
+              </button>
+            )}
+          </RadioGroup.Option>
+          <RadioGroup.Option
+            className="first:rounded-l-xl last:rounded-r-xl"
+            value="solid"
+          >
+            {({ checked }) => (
+              <button
+                disabled={isRefetching || isLoading}
+                className={`
+                ${
+                  isRefetching || isLoading
+                    ? " cursor-default pointer-events-none"
+                    : ""
+                }
+                ${
+                  checked
+                    ? "bg-indigo-950 text-indigo-500"
+                    : "border-transparent"
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11 text-white font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
+              >
+                Solid
+              </button>
+            )}
+          </RadioGroup.Option>
+          <RadioGroup.Option
+            className="first:rounded-l-xl last:rounded-r-xl"
+            value="outline"
+          >
+            {({ checked }) => (
+              <button
+                disabled={isRefetching || isLoading}
+                className={`
+                ${
+                  isRefetching || isLoading
+                    ? " cursor-default pointer-events-none"
+                    : ""
+                }
+                ${
+                  checked
+                    ? "bg-indigo-950 text-indigo-500"
+                    : "border-transparent"
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11 text-white font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
+              >
+                Outline
+              </button>
+            )}
+          </RadioGroup.Option>
+        </RadioGroup>
+
         <div
           onClick={(e) => {
             if (e.target.dataset.purp === "icon-element") {
@@ -115,10 +236,10 @@ export default function Icons() {
               setIsOpen(true);
             }
           }}
-          className={`min-h-screen grid-cols-3 relative sm:grid-cols-5 grid md:grid-cols-6 lg:grid-cols-7 place-content-start justify-items-center gap-4 w-full rounded-b-xl py-4 px-2 bg-gradient-to-r from-indigo-300/40 to-indigo-300/50 backdrop-blur-xl`}
+          className={`min-h-screen grid-cols-3 relative sm:grid-cols-5 grid md:grid-cols-6 lg:grid-cols-7 place-content-start justify-items-center gap-4 w-full rounded-xl py-4 px-2 bg-gradient-to-r from-indigo-300/40 to-indigo-300/50 backdrop-blur-xl`}
         >
-          {isLoading ? (
-            <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full">
+          {isLoading || isRefetching ? (
+            <div className="absolute h-full w-full flex items-center justify-center ">
               <Loader />
             </div>
           ) : (
@@ -134,13 +255,13 @@ export default function Icons() {
                   data-link={filteredIcon.url}
                   data-purp="icon-element"
                   key={index}
-                  className="w-24 relative h-24 md:w-28 md:h-28 p-3 flex flex-col cursor-pointer gap-2 text-gray-50 rounded-lg duration-150 hover:bg-indigo-600 hover:shadow-lg shadow-black hover:text-white items-center justify-center "
+                  className="w-24 relative h-24 md:w-28 md:h-28 p-3 flex flex-col cursor-pointer text-gray-50 rounded-lg duration-150 hover:bg-indigo-600 hover:shadow-lg shadow-black hover:text-white items-center justify-center "
                 >
                   <img
-                    className="h-full w-full p-5  pointer-events-none"
+                    className="h-full w-full p-5 -mt-2  pointer-events-none"
                     src={`${filteredIcon.url}`}
                   ></img>
-                  <h2 className="text-xs absolute bottom-1.5 w-20  text-truncate md:font-bold text-center md:text-xs pointer-events-none">
+                  <h2 className="text-xs absolute bottom-2 w-20 text-truncate font-semibold md:font-bold text-center md:text-xs pointer-events-none">
                     {filteredIcon.name
                       .toLowerCase()
                       .substring(0, filteredIcon.name.indexOf("."))}
@@ -172,7 +293,7 @@ export default function Icons() {
                   <div
                     title={currentlyOpenName}
                     style={{ background: color }}
-                    className={`w-32 h-32 relative p-8 gap-2 md:w-40 md:h-40 flex flex-col cursor-pointer   rounded-lg duration-150    items-center justify-between `}
+                    className={`w-32 h-32 relative p-8 gap-2 md:w-40 md:h-40 flex flex-col cursor-pointer  hover:bg-indigo-950 rounded-xl duration-150    items-center justify-between `}
                   >
                     <img
                       className="w-full h-full"
