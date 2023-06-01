@@ -11,20 +11,26 @@ const firebaseConfig = {
 };
 
 export default async function handler(req, res) {
-  const icons = req.query.icons;
   initializeApp(firebaseConfig);
   const storage = getStorage();
 
   try {
-    const storageRef = ref(storage, icons);
-    const fileList = await listAll(storageRef);
+    const folders = ["social", "brand", "solid", "outline"];
+    const fileData = [];
 
-    const fileData = await Promise.all(
-      fileList.items.map(async (item) => {
-        const url = await getDownloadURL(item);
-        return { name: item.name, url };
-      })
-    );
+    for (const folder of folders) {
+      const storageRef = ref(storage, folder);
+      const fileList = await listAll(storageRef);
+
+      const folderData = await Promise.all(
+        fileList.items.map(async (item) => {
+          const url = await getDownloadURL(item);
+          return { name: item.name, url };
+        })
+      );
+
+      fileData.push({ folder, data: folderData });
+    }
 
     res.status(200).json(fileData);
   } catch (error) {

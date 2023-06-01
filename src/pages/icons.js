@@ -10,9 +10,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-scroll";
 import Loader from "@/components/Loader";
 import Layout from "@/Layouts/Layout";
+import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 export default function Icons() {
   let [selectedIcons, setSelectedIcons] = useState("social");
+  const [changing, setChanging] = useState(false);
   const [copied, setCopied] = useState(false);
   const [currentlyOpenName, setCurrentlyOpenName] = useState("");
   const [currentlyOpenUrl, setCurrentlyOpenUrl] = useState("");
@@ -23,35 +25,37 @@ export default function Icons() {
   let [isOpen, setIsOpen] = useState(false);
   const getAllIcons = async () => {
     try {
-      const response = await axios.get(`/api/geticons/${selectedIcons}`);
+      const response = await axios.get("/api/geticons");
       return response.data;
     } catch (err) {
       console.log(err);
     }
   };
 
-  const {
-    data: allIcons,
-    isLoading,
-    refetch,
-    isRefetching,
-  } = useQuery({
+  const { data: allIcons, isLoading } = useQuery({
     queryKey: "allIcons",
     queryFn: getAllIcons,
     refetchOnWindowFocus: false,
   });
   useEffect(() => {
     if (allIcons && allIcons.length > 0) {
-      const filteredIcons = allIcons.filter((icon) =>
+      const filteredIcons = allIcons[
+        selectedIcons === "social"
+          ? 0
+          : selectedIcons === "brand"
+          ? 1
+          : selectedIcons === "solid"
+          ? 2
+          : 3
+      ].data.filter((icon) =>
         icon.name.toLowerCase().includes(filtered.toLowerCase())
       );
       setFilteredIconsLength(filteredIcons.length);
     }
-  }, [allIcons, filtered]);
+  }, [allIcons, filtered, selectedIcons]);
+
   const [color, setColor] = useState("#818cf8");
-  useEffect(() => {
-    refetch();
-  }, [selectedIcons]);
+
   const handleColorChange = (selectedColor) => {
     setColor(selectedColor.hex);
   };
@@ -92,12 +96,18 @@ export default function Icons() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  const handleChange = () => {
+    setChanging(true);
+    setTimeout(() => {
+      setChanging(false);
+    }, 1000);
+  };
   return (
     <Layout>
       <div
         className={` ${inter.className} flex flex-col gap-5 w-full px-3 sm:px-5 xl:px-10 py-10 items-center justify-center  mx-auto`}
       >
-        {isRefetching || isLoading ? (
+        {isLoading ? (
           <span className="w-44 self-start h-4 text-sm font-semibold text-white">
             <SkeletonTheme
               baseColor="#4338ca"
@@ -137,90 +147,80 @@ export default function Icons() {
           className="flex  border-2 border-indigo-300/20 self-start rounded-xl"
         >
           <RadioGroup.Option
-            className="first:rounded-l-xl last:rounded-r-xl"
+            className="first:rounded-l-xl last:rounded-r-xl text-white"
             value="social"
           >
             {({ checked }) => (
               <button
-                disabled={isRefetching || isLoading}
+                onClick={handleChange}
+                disabled={isLoading || changing}
                 className={`${
-                  isRefetching || isLoading
-                    ? " cursor-default pointer-events-none"
-                    : ""
+                  isLoading || changing ? " cursor-not-allowed" : ""
                 } ${
                   checked
                     ? "bg-indigo-950 text-indigo-500"
                     : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11 text-white font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
               >
                 Social
               </button>
             )}
           </RadioGroup.Option>
           <RadioGroup.Option
-            className="first:rounded-l-xl last:rounded-r-xl"
+            className="first:rounded-l-xl last:rounded-r-xl text-white"
             value="brand"
           >
             {({ checked }) => (
               <button
-                disabled={isRefetching || isLoading}
+                onClick={handleChange}
+                disabled={isLoading || changing}
                 className={`
-                ${
-                  isRefetching || isLoading
-                    ? " cursor-default pointer-events-none"
-                    : ""
-                }
+                ${isLoading || changing ? " cursor-not-allowed" : ""}
                 ${
                   checked
                     ? "bg-indigo-950 text-indigo-500"
                     : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11 text-white font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950 `}
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950 `}
               >
                 Brand
               </button>
             )}
           </RadioGroup.Option>
           <RadioGroup.Option
-            className="first:rounded-l-xl last:rounded-r-xl"
+            className="first:rounded-l-xl last:rounded-r-xl text-white"
             value="solid"
           >
             {({ checked }) => (
               <button
-                disabled={isRefetching || isLoading}
+                onClick={handleChange}
+                disabled={isLoading || changing}
                 className={`
-                ${
-                  isRefetching || isLoading
-                    ? " cursor-default pointer-events-none"
-                    : ""
-                }
+                ${isLoading || changing ? " cursor-not-allowed" : ""}
                 ${
                   checked
                     ? "bg-indigo-950 text-indigo-500"
                     : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11 text-white font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
               >
                 Solid
               </button>
             )}
           </RadioGroup.Option>
           <RadioGroup.Option
-            className="first:rounded-l-xl last:rounded-r-xl"
+            className="first:rounded-l-xl last:rounded-r-xl text-white"
             value="outline"
           >
             {({ checked }) => (
               <button
-                disabled={isRefetching || isLoading}
+                onClick={handleChange}
+                disabled={isLoading || changing}
                 className={`
-                ${
-                  isRefetching || isLoading
-                    ? " cursor-default pointer-events-none"
-                    : ""
-                }
+                ${isLoading || changing ? " cursor-not-allowed" : ""}
                 ${
                   checked
                     ? "bg-indigo-950 text-indigo-500"
                     : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11 text-white font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
               >
                 Outline
               </button>
@@ -236,37 +236,51 @@ export default function Icons() {
               setIsOpen(true);
             }
           }}
-          className={`min-h-screen grid-cols-3 relative sm:grid-cols-5 grid md:grid-cols-6 lg:grid-cols-7 place-content-start justify-items-center gap-4 w-full rounded-xl py-4 px-2 bg-gradient-to-r from-indigo-300/40 to-indigo-300/50 backdrop-blur-xl`}
+          className={`min-h-screen grid-cols-3 relative sm:grid-cols-5 grid md:grid-cols-6 lg:grid-cols-8 place-content-start justify-items-center gap-4 w-full rounded-xl py-4 px-2 bg-gradient-to-r from-indigo-300/40 to-indigo-300/50 backdrop-blur-xl`}
         >
-          {isLoading || isRefetching ? (
+          {isLoading ? (
             <div className="absolute h-full w-full flex items-center justify-center ">
               <Loader />
             </div>
           ) : (
             allIcons &&
-            allIcons
+            allIcons[
+              selectedIcons === "social"
+                ? 0
+                : selectedIcons === "brand"
+                ? 1
+                : selectedIcons === "solid"
+                ? 2
+                : 3
+            ].data
               .filter((icon) =>
                 icon.name.toLowerCase().includes(filtered.toLowerCase())
               )
               .map((filteredIcon, index) => (
-                <div
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.25, delay: index / 45 }}
                   title={filteredIcon.name.toLowerCase()}
                   data-name={filteredIcon.name.toLowerCase()}
                   data-link={filteredIcon.url}
                   data-purp="icon-element"
-                  key={index}
-                  className="w-24 relative h-24 md:w-28 md:h-28 p-3 flex flex-col cursor-pointer text-gray-50 rounded-lg duration-150 hover:bg-indigo-600 hover:shadow-lg shadow-black hover:text-white items-center justify-center "
+                  key={filteredIcon.url}
+                  className="w-24 relative h-24 md:w-28 md:h-28 p-3 flex flex-col cursor-pointer text-gray-50 rounded-lg  hover:bg-indigo-600 hover:shadow-lg shadow-black hover:text-white items-center justify-center "
                 >
-                  <img
+                  <Image
+                    alt={filteredIcon.name}
+                    width={24}
+                    height={24}
                     className="h-full w-full p-5 -mt-2  pointer-events-none"
                     src={`${filteredIcon.url}`}
-                  ></img>
-                  <h2 className="text-xs absolute bottom-2 w-20 text-truncate font-semibold md:font-bold text-center md:text-xs pointer-events-none">
+                  ></Image>
+                  <h2 className="text-xs absolute bottom-3 w-20 text-truncate font-semibold md:font-bold text-center md:text-xs pointer-events-none">
                     {filteredIcon.name
                       .toLowerCase()
                       .substring(0, filteredIcon.name.indexOf("."))}
                   </h2>
-                </div>
+                </motion.div>
               ))
           )}
         </div>
@@ -293,13 +307,13 @@ export default function Icons() {
                   <div
                     title={currentlyOpenName}
                     style={{ background: color }}
-                    className={`w-32 h-32 relative p-8 gap-2 md:w-40 md:h-40 flex flex-col cursor-pointer  hover:bg-indigo-950 rounded-xl duration-150    items-center justify-between `}
+                    className={`w-32 h-32 relative p-8 gap-2 md:w-40 md:h-40 flex flex-col cursor-pointer  hover:bg-indigo-950 rounded-xl duration-150 items-center justify-between `}
                   >
                     <img
-                      className="w-full h-full"
+                      className="w-full h-full -mt-2"
                       src={currentlyOpenUrl}
                     ></img>
-                    <h2 className=" absolute bottom-1.5 text-sm md:text-base font-semibold text-white text-truncate w-28 text-center">
+                    <h2 className="absolute bottom-1.5 text-sm md:text-base font-semibold text-white text-truncate w-28 text-center">
                       {currentlyOpenName}
                     </h2>
                   </div>
