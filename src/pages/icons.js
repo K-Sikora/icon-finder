@@ -14,7 +14,6 @@ import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 export default function Icons() {
   let [selectedIcons, setSelectedIcons] = useState("social");
-  const [changing, setChanging] = useState(false);
   const [copied, setCopied] = useState(false);
   const [currentlyOpenName, setCurrentlyOpenName] = useState("");
   const [currentlyOpenUrl, setCurrentlyOpenUrl] = useState("");
@@ -54,7 +53,7 @@ export default function Icons() {
     }
   }, [allIcons, filtered, selectedIcons]);
 
-  const [color, setColor] = useState("#818cf8");
+  const [color, setColor] = useState("#6366f1");
 
   const handleColorChange = (selectedColor) => {
     setColor(selectedColor.hex);
@@ -96,12 +95,7 @@ export default function Icons() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const handleChange = () => {
-    setChanging(true);
-    setTimeout(() => {
-      setChanging(false);
-    }, 1000);
-  };
+
   return (
     <Layout>
       <div
@@ -130,7 +124,7 @@ export default function Icons() {
             onChange={(e) => {
               setFiltered(e.target.value);
             }}
-            className="w-full text-sm md:text-lg font-semibold text-white outline-none duration-150 rounded-xl px-3 md:px-6 h-12 md:h-16  bg-indigo-950"
+            className="w-full text-sm md:text-lg font-semibold text-white focus:bg-indigo-900 outline-none duration-150 rounded-xl px-3 md:px-6 h-12 md:h-16  bg-indigo-950"
             placeholder={`Search ${selectedIcons} icons`}
           ></input>
           <button className="absolute bg-indigo-900 rounded-r-xl right-0 w-12 md:w-16 h-full top-1/2 -translate-y-1/2 flex items-center justify-center">
@@ -152,15 +146,12 @@ export default function Icons() {
           >
             {({ checked }) => (
               <button
-                onClick={handleChange}
-                disabled={isLoading || changing}
-                className={`${
-                  isLoading || changing ? " cursor-not-allowed" : ""
-                } ${
+                disabled={isLoading}
+                className={` ${
                   checked
                     ? "bg-indigo-950 text-indigo-500"
                     : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-bold text-sm lg:text-lg   duration-500 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
               >
                 Social
               </button>
@@ -172,15 +163,13 @@ export default function Icons() {
           >
             {({ checked }) => (
               <button
-                onClick={handleChange}
-                disabled={isLoading || changing}
+                disabled={isLoading}
                 className={`
-                ${isLoading || changing ? " cursor-not-allowed" : ""}
                 ${
                   checked
                     ? "bg-indigo-950 text-indigo-500"
                     : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950 `}
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-bold text-sm lg:text-lg   duration-500 cursor-pointer rounded-[inherit] hover:bg-indigo-950 `}
               >
                 Brand
               </button>
@@ -192,15 +181,13 @@ export default function Icons() {
           >
             {({ checked }) => (
               <button
-                onClick={handleChange}
-                disabled={isLoading || changing}
+                disabled={isLoading}
                 className={`
-                ${isLoading || changing ? " cursor-not-allowed" : ""}
                 ${
                   checked
                     ? "bg-indigo-950 text-indigo-500"
                     : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-bold text-sm lg:text-lg   duration-500 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
               >
                 Solid
               </button>
@@ -212,15 +199,13 @@ export default function Icons() {
           >
             {({ checked }) => (
               <button
-                onClick={handleChange}
-                disabled={isLoading || changing}
+                disabled={isLoading}
                 className={`
-                ${isLoading || changing ? " cursor-not-allowed" : ""}
                 ${
                   checked
                     ? "bg-indigo-950 text-indigo-500"
                     : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-semibold text-sm lg:text-lg   duration-150 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
+                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-bold text-sm lg:text-lg   duration-500 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
               >
                 Outline
               </button>
@@ -236,7 +221,7 @@ export default function Icons() {
               setIsOpen(true);
             }
           }}
-          className={`min-h-screen grid-cols-3 relative sm:grid-cols-5 grid md:grid-cols-6 lg:grid-cols-8 place-content-start justify-items-center gap-4 w-full rounded-xl py-4 px-2 bg-gradient-to-r from-indigo-300/40 to-indigo-300/50 backdrop-blur-xl`}
+          className={`min-h-screen grid-cols-3 relative sm:grid-cols-5 grid md:grid-cols-6 lg:grid-cols-8 place-content-start justify-items-center gap-4 w-full rounded-xl py-4 px-2 bg-gradient-to-r from-indigo-400/40 to-indigo-400/50 backdrop-blur-xl`}
         >
           {isLoading ? (
             <div className="absolute h-full w-full flex items-center justify-center ">
@@ -260,7 +245,7 @@ export default function Icons() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.25, delay: index / 45 }}
+                  transition={{ duration: 0.4, delay: index / 45 }}
                   title={filteredIcon.name.toLowerCase()}
                   data-name={filteredIcon.name.toLowerCase()}
                   data-link={filteredIcon.url}
@@ -313,7 +298,7 @@ export default function Icons() {
                       className="w-full h-full -mt-2"
                       src={currentlyOpenUrl}
                     ></img>
-                    <h2 className="absolute bottom-1.5 text-sm md:text-base font-semibold text-white text-truncate w-28 text-center">
+                    <h2 className="absolute bottom-3 text-sm md:text-base font-semibold text-white text-truncate w-28 text-center">
                       {currentlyOpenName}
                     </h2>
                   </div>
@@ -407,11 +392,12 @@ export default function Icons() {
           {backToTop && (
             <motion.div
               whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.1 }}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed right-10 bottom-10 bg-indigo-300 w-14 h-14 rounded-lg shadow-black/20 shadow-lg flex items-center justify-center"
+              className="fixed right-10 bottom-10 bg-indigo-700 w-14 h-14 rounded-lg shadow-black/20 shadow-lg flex items-center justify-center"
             >
               <Link
                 className="w-full h-full"

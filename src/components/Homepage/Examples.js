@@ -10,281 +10,160 @@ const Examples = () => {
       <h2 className="text-center text-2xl md:text-4xl font-black tracking-wide text-white">
         This library contains
       </h2>
-      <div className="flex flex-col md:flex-row items-center justify-center w-full gap-5 md:gap-10 h-full ">
-        <div className="w-full md:w-1/2 h-[500px]  relative rounded-xl  flex flex-col gap-8 items-center justify-center">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full md:gap-10 h-full ">
+        <div className="w-full md:w-1/2 md:h-[500px] pt-10 md:pt-0 relative rounded-xl  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
             <h3 className="text-xl md:text-3xl font-bold tracking-wide text-white">
               Brand icons
             </h3>
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-2"
-                src="./examples/brand/Tesla.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-2"
-                src="./examples/brand/Stripe.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-2"
-                src="./examples/brand/Twitch.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["Twitch", "Amazon", "Zoom", "PayPal"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-2"
+                  src={`./examples/brand/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-2"
-                src="./examples/brand/Zoom.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-2"
-                src="./examples/brand/Trello.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-2"
-                src="./examples/brand/PayPal.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["Google", "Netflix", "Tesla", "Trello"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-2"
+                  src={`./examples/brand/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-2"
-                src="./examples/brand/Google.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-2"
-                src="./examples/brand/Amazon.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-2"
-                src="./examples/brand/Netflix.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["Coinbase", "Microsoft", "Dropbox", "Stripe"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-2"
+                  src={`./examples/brand/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="w-full md:w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
+        <div className="w-full md:w-1/2 relative pt-10 md:pt-0  rounded-xl md:h-[500px]  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
             <h3 className="text-xl md:text-3xl font-bold tracking-wide text-white">
               Social icons
             </h3>
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className="w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/social/facebook.svg"
-              ></img>
-            </div>
-            <div className="w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/social/discord.svg"
-              ></img>
-            </div>
-            <div className="w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/social/snapchat.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["reddit", "twitter", "tiktok", "telegram"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-5"
+                  src={`./examples/social/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className="w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/social/linkedin.svg"
-              ></img>
-            </div>
-            <div className="w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/social/telegram.svg"
-              ></img>
-            </div>
-            <div className="w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/social/twitter.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["snapchat", "pinterest", "linkedin", "facebook"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-5"
+                  src={`./examples/social/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className="w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/social/pinterest.svg"
-              ></img>
-            </div>
-            <div className="w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/social/reddit.svg"
-              ></img>
-            </div>
-            <div className="w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/social/tiktok.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["youtube", "dribble", "instagram", "discord"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-5"
+                  src={`./examples/social/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row items-center justify-center w-full gap-12 h-full">
-        <div className="w-full md:w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full gap-8 md:gap-12 h-full">
+        <div className="w-full md:w-1/2 relative rounded-xl pt-10 md:pt-0  md:h-[500px]  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
             <h3 className="text-xl md:text-3xl font-bold tracking-wide text-white">
               Solid icons
             </h3>
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/solid/settings-2.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/solid/power-2.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/solid/home-2.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["fast-forward-2", "github-2", "gitlab-2", "hexagon-2"].map(
+              (item) => (
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                  <img
+                    className=" h-full w-full rounded-lg p-5"
+                    src={`./examples/solid/${item}.svg`}
+                  ></img>
+                </div>
+              )
+            )}
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/solid/minus-circle-2.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/solid/info-2.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/solid/hexagon-2.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["home-2", "info-2", "minus-circle-2", "power-2"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-5"
+                  src={`./examples/solid/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/solid/github-2.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/solid/gitlab-2.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/solid/fast-forward-2.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["battery-2", "bookmark-2", "clock-2", "hexagon-2"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-5"
+                  src={`./examples/solid/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="w-full md:w-1/2 relative rounded-xl h-[500px]  flex flex-col gap-8 items-center justify-center">
+        <div className="w-full md:w-1/2 relative pt-10 md:pt-0 rounded-xl md:h-[500px]  flex flex-col gap-8 items-center justify-center">
           <div className=" flex justify-center  w-full ">
             <h3 className="text-xl md:text-3xl font-bold tracking-wide text-white">
               Outline icons
             </h3>
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/outline/settings.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/outline/power.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/outline/home.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["fast-forward", "github", "gitlab", "hexagon"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-5"
+                  src={`./examples/outline/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/outline/minus-circle.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/outline/info.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/outline/hexagon.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["home", "info", "minus-circle", "power"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-5"
+                  src={`./examples/outline/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
-          <div className="grid w-full place-items-center grid-cols-3">
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/outline/github.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/outline/gitlab.svg"
-              ></img>
-            </div>
-            <div className=" w-24 h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-              <img
-                className=" h-full w-full rounded-lg p-6"
-                src="./examples/outline/fast-forward.svg"
-              ></img>
-            </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["battery", "bookmark", "clock", "hexagon"].map((item) => (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+                <img
+                  className=" h-full w-full rounded-lg p-5"
+                  src={`./examples/outline/${item}.svg`}
+                ></img>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-      <button className="bg-indigo-300 self-center  text-black  hover:bg-indigo-500 duration-300 group h-12 w-72 gap-2 rounded-xl hover:text-white font-semibold flex items-center justify-center">
-        Want to add icons?
-      </button>
     </div>
   );
 };

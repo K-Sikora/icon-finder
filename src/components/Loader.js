@@ -6,8 +6,8 @@ const Loader = () => {
       <BarLoader
         cssOverride={{ borderRadius: "12px", backgroundColor: "#a5b4fc" }}
         color="#4338ca"
-        height={14}
-        width={200}
+        height={8}
+        width={150}
       />
     </div>
   );
