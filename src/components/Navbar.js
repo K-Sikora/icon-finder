@@ -8,7 +8,7 @@ import IconModal from "./IconModal";
 import Image from "next/image";
 import { useRouter } from "next/router";
 const Navbar = ({ icons, isLoading }) => {
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  const [windowSize, setWindowSize] = useState(null);
 
   useEffect(() => {
     const handleWindowResize = () => {

@@ -21,8 +21,11 @@ const Examples = () => {
             </h3>
           </div>
           <div className="grid w-full place-items-center grid-cols-4">
-            {["reddit", "twitter", "tiktok", "telegram"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+            {["reddit", "twitter", "tiktok", "telegram"].map((item, index) => (
+              <div
+                key={index}
+                className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+              >
                 <img
                   className=" h-full w-full rounded-lg p-3 sm:p-7"
                   src={`./examples/social/${item}.svg`}
@@ -31,24 +34,34 @@ const Examples = () => {
             ))}
           </div>
           <div className="grid w-full place-items-center grid-cols-4">
-            {["snapchat", "pinterest", "linkedin", "facebook"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-                <img
-                  className=" h-full w-full rounded-lg p-3 sm:p-7"
-                  src={`./examples/social/${item}.svg`}
-                ></img>
-              </div>
-            ))}
+            {["snapchat", "pinterest", "linkedin", "facebook"].map(
+              (item, index) => (
+                <div
+                  key={index}
+                  className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+                >
+                  <img
+                    className=" h-full w-full rounded-lg p-3 sm:p-7"
+                    src={`./examples/social/${item}.svg`}
+                  ></img>
+                </div>
+              )
+            )}
           </div>
           <div className="grid w-full place-items-center grid-cols-4">
-            {["youtube", "dribble", "instagram", "discord"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-                <img
-                  className=" h-full w-full rounded-lg p-3 sm:p-7"
-                  src={`./examples/social/${item}.svg`}
-                ></img>
-              </div>
-            ))}
+            {["youtube", "dribble", "instagram", "discord"].map(
+              (item, index) => (
+                <div
+                  key={index}
+                  className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+                >
+                  <img
+                    className=" h-full w-full rounded-lg p-3 sm:p-7"
+                    src={`./examples/social/${item}.svg`}
+                  ></img>
+                </div>
+              )
+            )}
           </div>
           <button
             className="bg-indigo-400 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
@@ -73,8 +86,11 @@ const Examples = () => {
             </h3>
           </div>
           <div className="grid w-full place-items-center grid-cols-4">
-            {["Twitch", "Amazon", "Zoom", "PayPal"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+            {["Twitch", "Amazon", "Zoom", "PayPal"].map((item, index) => (
+              <div
+                key={index}
+                className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+              >
                 <img
                   className=" h-full w-full rounded-lg p-2"
                   src={`./examples/brand/${item}.svg`}
@@ -83,8 +99,11 @@ const Examples = () => {
             ))}
           </div>
           <div className="grid w-full place-items-center grid-cols-4">
-            {["Google", "Netflix", "Tesla", "Trello"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+            {["Google", "Netflix", "Tesla", "Trello"].map((item, index) => (
+              <div
+                key={index}
+                className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+              >
                 <img
                   className=" h-full w-full rounded-lg p-2"
                   src={`./examples/brand/${item}.svg`}
@@ -93,14 +112,19 @@ const Examples = () => {
             ))}
           </div>
           <div className="grid w-full place-items-center grid-cols-4 ">
-            {["Coinbase", "Microsoft", "Dropbox", "Stripe"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-                <img
-                  className=" h-full w-full rounded-lg p-2"
-                  src={`./examples/brand/${item}.svg`}
-                ></img>
-              </div>
-            ))}
+            {["Coinbase", "Microsoft", "Dropbox", "Stripe"].map(
+              (item, index) => (
+                <div
+                  key={index}
+                  className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+                >
+                  <img
+                    className=" h-full w-full rounded-lg p-2"
+                    src={`./examples/brand/${item}.svg`}
+                  ></img>
+                </div>
+              )
+            )}
           </div>
           <button
             className="bg-indigo-400 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
@@ -128,8 +152,11 @@ const Examples = () => {
           </div>
           <div className="grid w-full place-items-center grid-cols-4">
             {["fast-forward-2", "github-2", "gitlab-2", "hexagon-2"].map(
-              (item) => (
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+              (item, index) => (
+                <div
+                  key={index}
+                  className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+                >
                   <img
                     className=" h-full w-full rounded-lg p-3 sm:p-7"
                     src={`./examples/solid/${item}.svg`}
@@ -139,24 +166,34 @@ const Examples = () => {
             )}
           </div>
           <div className="grid w-full place-items-center grid-cols-4">
-            {["home-2", "info-2", "minus-circle-2", "power-2"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-                <img
-                  className=" h-full w-full rounded-lg p-3 sm:p-7"
-                  src={`./examples/solid/${item}.svg`}
-                ></img>
-              </div>
-            ))}
+            {["home-2", "info-2", "minus-circle-2", "power-2"].map(
+              (item, index) => (
+                <div
+                  key={index}
+                  className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+                >
+                  <img
+                    className=" h-full w-full rounded-lg p-3 sm:p-7"
+                    src={`./examples/solid/${item}.svg`}
+                  ></img>
+                </div>
+              )
+            )}
           </div>
           <div className="grid w-full place-items-center grid-cols-4">
-            {["battery-2", "bookmark-2", "clock-2", "hexagon-2"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-                <img
-                  className=" h-full w-full rounded-lg p-3 sm:p-7"
-                  src={`./examples/solid/${item}.svg`}
-                ></img>
-              </div>
-            ))}
+            {["battery-2", "bookmark-2", "clock-2", "hexagon-2"].map(
+              (item, index) => (
+                <div
+                  key={index}
+                  className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+                >
+                  <img
+                    className=" h-full w-full rounded-lg p-3 sm:p-7"
+                    src={`./examples/solid/${item}.svg`}
+                  ></img>
+                </div>
+              )
+            )}
           </div>
           <button
             className="bg-indigo-400 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
@@ -181,8 +218,26 @@ const Examples = () => {
             </h3>
           </div>
           <div className="grid w-full place-items-center grid-cols-4">
-            {["fast-forward", "github", "gitlab", "hexagon"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+            {["fast-forward", "github", "gitlab", "hexagon"].map(
+              (item, index) => (
+                <div
+                  key={index}
+                  className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+                >
+                  <img
+                    className=" h-full w-full rounded-lg p-3 sm:p-7"
+                    src={`./examples/outline/${item}.svg`}
+                  ></img>
+                </div>
+              )
+            )}
+          </div>
+          <div className="grid w-full place-items-center grid-cols-4">
+            {["home", "info", "minus-circle", "power"].map((item, index) => (
+              <div
+                key={index}
+                className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+              >
                 <img
                   className=" h-full w-full rounded-lg p-3 sm:p-7"
                   src={`./examples/outline/${item}.svg`}
@@ -191,18 +246,11 @@ const Examples = () => {
             ))}
           </div>
           <div className="grid w-full place-items-center grid-cols-4">
-            {["home", "info", "minus-circle", "power"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
-                <img
-                  className=" h-full w-full rounded-lg p-3 sm:p-7"
-                  src={`./examples/outline/${item}.svg`}
-                ></img>
-              </div>
-            ))}
-          </div>
-          <div className="grid w-full place-items-center grid-cols-4">
-            {["battery", "bookmark", "clock", "hexagon"].map((item) => (
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center">
+            {["battery", "bookmark", "clock", "hexagon"].map((item, index) => (
+              <div
+                key={index}
+                className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-indigo-300 border-2 border-indigo-400 shadow-lg shadow-black/20 rounded-lg  flex items-center justify-center"
+              >
                 <img
                   className=" h-full w-full rounded-lg p-3 sm:p-7"
                   src={`./examples/outline/${item}.svg`}
