@@ -5,20 +5,34 @@ import { RadioGroup } from "@headlessui/react";
 import { Inter } from "next/font/google";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { SketchPicker } from "react-color";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-scroll";
 import Loader from "@/components/Loader";
 import Layout from "@/Layouts/Layout";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import IconModal from "@/components/IconModal";
 const inter = Inter({ subsets: ["latin"] });
 export default function Icons() {
-  let [selectedIcons, setSelectedIcons] = useState("social");
+  const router = useRouter();
+
+  let [selectedIcons, setSelectedIcons] = useState(
+    router.query.filter === "brand"
+      ? "brand"
+      : router.query.filter === "solid"
+      ? "solid"
+      : router.query.filter === "outline"
+      ? "outline"
+      : "social"
+  );
+
   const [copied, setCopied] = useState(false);
   const [currentlyOpenName, setCurrentlyOpenName] = useState("");
   const [currentlyOpenUrl, setCurrentlyOpenUrl] = useState("");
   const [backToTop, setBackToTop] = useState(false);
-  const [filtered, setFiltered] = useState("");
+  const [filtered, setFiltered] = useState(
+    router.query.search ? router.query.search : ""
+  );
   const [isOpenSketchPicker, setIsOpenSketchPicker] = useState(false);
   const [filteredIconsLength, setFilteredIconsLength] = useState(0);
   let [isOpen, setIsOpen] = useState(false);
@@ -95,7 +109,20 @@ export default function Icons() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+  useEffect(() => {
+    if (isLoading === false) {
+      router.push(
+        {
+          pathname: router.pathname,
+          query: {},
+        },
+        undefined,
+        {
+          shallow: true,
+        }
+      );
+    }
+  }, [isLoading]);
   return (
     <Layout>
       <div
@@ -124,6 +151,7 @@ export default function Icons() {
             onChange={(e) => {
               setFiltered(e.target.value);
             }}
+            value={filtered}
             className="w-full text-sm md:text-lg font-semibold text-white focus:bg-indigo-900 outline-none duration-150 rounded-xl px-3 md:px-6 h-12 md:h-16  bg-indigo-950"
             placeholder={`Search ${selectedIcons} icons`}
           ></input>
@@ -245,7 +273,7 @@ export default function Icons() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index / 45 }}
+                  transition={{ duration: 0.4, delay: index / 55 }}
                   title={filteredIcon.name.toLowerCase()}
                   data-name={filteredIcon.name.toLowerCase()}
                   data-link={filteredIcon.url}
@@ -270,124 +298,19 @@ export default function Icons() {
           )}
         </div>
 
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              className={`${inter.className} flex items-center justify-center  fixed w-full h-full top-0 left-0 z-10 `}
-              initial={{ y: 2000 }}
-              animate={{ y: 0 }}
-              exit={{ y: -2000 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div
-                data-click="bg"
-                onClick={(e) => {
-                  if (e.target.dataset.click === "bg") {
-                    setIsOpenSketchPicker(false);
-                  }
-                }}
-                className="w-full h-full rounded-lg relative bg-dialog gap-6 flex flex-col justify-center pb-52 md:pb-40"
-              >
-                <div className="flex self-center flex-col gap-3 items-center justify-center ">
-                  <div
-                    title={currentlyOpenName}
-                    style={{ background: color }}
-                    className={`w-32 h-32 relative p-8 gap-2 md:w-40 md:h-40 flex flex-col cursor-pointer  hover:bg-indigo-950 rounded-xl duration-150 items-center justify-between `}
-                  >
-                    <img
-                      className="w-full h-full -mt-2"
-                      src={currentlyOpenUrl}
-                    ></img>
-                    <h2 className="absolute bottom-3 text-sm md:text-base font-semibold text-white text-truncate w-28 text-center">
-                      {currentlyOpenName}
-                    </h2>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center gap-6 self-center">
-                  <div className="flex gap-6">
-                    <motion.button
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => {
-                        handleDownload();
-                      }}
-                      className="bg-indigo-500 flex-col text-xs flex items-center justify-center text-white font-extrabold rounded-lg h-12 w-12 shadow-lg shadow-black/10"
-                    >
-                      <img
-                        className="w-1/2 h-1/2"
-                        src="./download.svg"
-                      ></img>
-                    </motion.button>
-
-                    <motion.button
-                      whileTap={{ scale: 0.9 }}
-                      onClick={handleCopyIconUrl}
-                      className="bg-indigo-500 relative flex-col text-xs flex items-center justify-center text-white font-extrabold rounded-lg h-12 w-12 shadow-lg shadow-black/10"
-                    >
-                      <img
-                        className="w-1/2 h-1/2"
-                        src="./copy.svg"
-                      ></img>
-                      <AnimatePresence>
-                        {copied && (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2, type: "spring" }}
-                            className="absolute shadow-lg rounded-md shadow-black/10 h-8 w-32 flex items-center justify-center -top-10 bg-indigo-900"
-                          >
-                            URL copied!
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.button>
-                  </div>
-                  <div className="flex items-center w-full justify-center gap-2 relative flex-col ">
-                    <div className="w-full justify-center flex gap-2 h-12">
-                      <button
-                        style={{ backgroundColor: `${color}` }}
-                        onClick={() =>
-                          setIsOpenSketchPicker(!isOpenSketchPicker)
-                        }
-                        className="h-full w-12 rounded-lg flex items-center justify-center"
-                      >
-                        <img
-                          className="h-1/2 w-1/2"
-                          src="./color-picker.svg"
-                        ></img>
-                      </button>
-                      <input
-                        onChange={(e) => {
-                          setColor(e.target.value);
-                        }}
-                        value={color}
-                        className="bg-indigo-900 border-2 border-transparent duration-200 focus:border-indigo-500 rounded-lg px-3 h-full  outline-none shadow-lg shadow-black/10 text-white"
-                      ></input>
-                    </div>
-
-                    {isOpenSketchPicker && (
-                      <div
-                        data-btn="change-bg"
-                        className="absolute top-14"
-                      >
-                        <SketchPicker
-                          color={color}
-                          onChange={handleColorChange}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <button
-                  className="absolute top-5 bg-indigo-900 p-2 rounded-lg shadow-lg shadow-black/10 right-5"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <img src="./x.svg"></img>
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <IconModal
+          color={color}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          currentlyOpenName={currentlyOpenName}
+          currentlyOpenUrl={currentlyOpenUrl}
+          handleCopyIconUrl={handleCopyIconUrl}
+          copied={copied}
+          isOpenSketchPicker={isOpenSketchPicker}
+          handleDownload={handleDownload}
+          setIsOpenSketchPicker={setIsOpenSketchPicker}
+          handleColorChange={handleColorChange}
+        />
         <AnimatePresence>
           {backToTop && (
             <motion.div
@@ -400,7 +323,7 @@ export default function Icons() {
               className="fixed right-10 bottom-10 bg-indigo-700 w-14 h-14 rounded-lg shadow-black/20 shadow-lg flex items-center justify-center"
             >
               <Link
-                className="w-full h-full"
+                className="w-full h-full rounded-lg"
                 to="top"
                 smooth={true}
                 duration={500}
