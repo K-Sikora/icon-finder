@@ -64,7 +64,7 @@ const Examples = () => {
             )}
           </div>
           <button
-            className="bg-indigo-400 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
+            className="bg-indigo-800 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
             onClick={() => {
               router.push({
                 pathname: "/icons",
@@ -127,7 +127,7 @@ const Examples = () => {
             )}
           </div>
           <button
-            className="bg-indigo-400 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
+            className="bg-indigo-800 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
             onClick={() => {
               router.push({
                 pathname: "/icons",
@@ -196,7 +196,7 @@ const Examples = () => {
             )}
           </div>
           <button
-            className="bg-indigo-400 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
+            className="bg-indigo-800 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
             onClick={() => {
               router.push({
                 pathname: "/icons",
@@ -259,7 +259,7 @@ const Examples = () => {
             ))}
           </div>
           <button
-            className="bg-indigo-400 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
+            className="bg-indigo-800 font-semibold text-white duration-200 hover:border-indigo-300 h-12 w-64 gap-1 rounded-lg flex items-center justify-center border-2 border-indigo-500 shadow-lg shadow-black/20"
             onClick={() => {
               router.push({
                 pathname: "/icons",
