@@ -142,7 +142,7 @@ export default function Icons() {
             id="top"
             className="w-full h-4 text-sm font-semibold text-white "
           >
-            Showing {filteredIconsLength} {selectedIcons} icons
+            Showing {filteredIconsLength} {selectedIcons} icon(s)
           </h3>
         )}
 

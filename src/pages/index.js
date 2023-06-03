@@ -62,7 +62,7 @@ const Home = () => {
           </h2>
           <Link href="/icons">
             <button className="bg-indigo-800 border-2 border-transparent hover:border-indigo-300 hover:bg-indigo-500 duration-300 group h-12 w-64 md:w-72 gap-2 rounded-xl font-bold flex items-center justify-center">
-              Start browsing icons
+              Start browsing
               <img
                 className="w-6 group-hover:translate-x-1 duration-300"
                 src="./explore.svg"
