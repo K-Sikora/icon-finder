@@ -1,4 +1,3 @@
-import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Inter } from "next/font/google";
 import { SketchPicker } from "react-color";
@@ -126,7 +125,10 @@ const IconModal = ({
             </div>
             <button
               className="absolute top-5 bg-indigo-900 p-2 rounded-lg shadow-lg shadow-black/10 right-5"
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                document.body.style.overflow = "visible";
+              }}
             >
               <img src="./x.svg"></img>
             </button>

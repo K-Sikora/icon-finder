@@ -7,6 +7,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import IconModal from "./IconModal";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Loader from "./Loader";
 const Navbar = ({ icons, isLoading }) => {
   const [windowSize, setWindowSize] = useState(null);
 
@@ -20,6 +21,9 @@ const Navbar = ({ icons, isLoading }) => {
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
+  }, []);
+  useEffect(() => {
+    setWindowSize(window.innerWidth);
   }, []);
   const router = useRouter();
   const [mobileSearchVisible, setMobileSearchVisible] = useState(false);
@@ -272,6 +276,7 @@ const Navbar = ({ icons, isLoading }) => {
             <div
               onClick={(e) => {
                 if (e.target.dataset.purp === "icon-element") {
+                  document.body.style.overflow = "hidden";
                   setCurrentlyOpenName(e.target.dataset.name);
                   setCurrentlyOpenUrl(e.target.dataset.link);
                   setIsOpen(true);
@@ -279,7 +284,8 @@ const Navbar = ({ icons, isLoading }) => {
               }}
               className="w-full h-full grid grid-cols-3 md:grid-cols-6 justify-items-center place-items-start"
             >
-              {icons &&
+              {!isLoading ? (
+                icons &&
                 icons.length > 0 &&
                 icons[selectedOption.id].data
                   .filter((icon) =>
@@ -311,7 +317,12 @@ const Navbar = ({ icons, isLoading }) => {
                           .substring(0, icon.name.indexOf("."))}
                       </h2>
                     </motion.div>
-                  ))}
+                  ))
+              ) : (
+                <div className="h-8 col-span-8 ">
+                  <Loader />
+                </div>
+              )}
             </div>
           </motion.div>
         )}

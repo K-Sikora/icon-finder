@@ -243,6 +243,7 @@ export default function Icons() {
 
         <div
           onClick={(e) => {
+            document.body.style.overflow = "hidden";
             if (e.target.dataset.purp === "icon-element") {
               setCurrentlyOpenName(e.target.dataset.name);
               setCurrentlyOpenUrl(e.target.dataset.link);
