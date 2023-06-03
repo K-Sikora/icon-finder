@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 body {
+  background-color: #4f46e5;
   background: url("../../public/bg.svg");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -22,6 +23,8 @@ body {
 }
 @media screen and (max-width: 768px) {
   body {
+    background: url("../../public/bg-mobile.svg");
+
     background-attachment: scroll;
     background-size: cover;
   }

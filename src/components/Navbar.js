@@ -158,29 +158,41 @@ const Navbar = ({ icons, isLoading }) => {
       </AnimatePresence>
 
       <div className="text-white  w-full mx-auto flex items-center justify-between">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+        >
           <Link
             href="/"
             className="md:text-lg italic flex gap-2 items-center justify-center font-black"
           >
             just_icons
           </Link>
-        </div>
+        </motion.div>
         {router.pathname === "/" && (
-          <button
+          <motion.button
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
             onClick={() => {
               setMobileSearchVisible(true);
             }}
-            className="md:hidden flex  items-center font-bold text-sm md:text-base justify-center"
+            className="md:hidden flex items-center font-bold text-sm md:text-base justify-center"
           >
             <img
               className="w-10 p-2.5 bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-xl"
               src="./search.svg"
             ></img>
-          </button>
+          </motion.button>
         )}
         {router.pathname === "/" && (
-          <div className="hidden w-[450px] md:flex">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className="hidden w-[450px] md:flex"
+          >
             <div className="flex relative items-center justify-center  text-white text-sm font-semibold rounded-l-xl h-11 border-r-2 border-gray-200/5 bg-indigo-900">
               <Listbox
                 value={selectedOption}
@@ -241,10 +253,15 @@ const Navbar = ({ icons, isLoading }) => {
                 <img src="./search.svg"></img>
               </button>
             </div>
-          </div>
+          </motion.div>
         )}
 
-        <div className="flex items-center gap-3 md:gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
+          className="flex items-center gap-3 md:gap-6"
+        >
           <Link href="https://github.com/K-Sikora">
             <motion.img
               whileHover={{ scale: 0.9 }}
@@ -261,7 +278,7 @@ const Navbar = ({ icons, isLoading }) => {
               src="./web.svg"
             ></motion.img>
           </Link>
-        </div>
+        </motion.div>
       </div>
 
       <AnimatePresence>
