@@ -152,7 +152,7 @@ export default function Icons() {
               setFiltered(e.target.value);
             }}
             value={filtered}
-            className="w-full text-sm md:text-lg font-semibold text-white focus:bg-indigo-900 outline-none duration-150 rounded-xl px-3 md:px-6 h-12 md:h-16  bg-indigo-950"
+            className="w-full text-sm md:text-lg font-semibold text-white focus:bg-indigo-900 outline-none duration-150 rounded-xl px-3 md:px-6 h-12 md:h-16 border-2 border-indigo-300/20 bg-indigo-950"
             placeholder={`Search ${selectedIcons} icons`}
           ></input>
           <button className="absolute bg-indigo-900 rounded-r-xl right-0 w-12 md:w-16 h-full top-1/2 -translate-y-1/2 flex items-center justify-center">
