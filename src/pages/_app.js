@@ -7,6 +7,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <title>just_icons</title>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
