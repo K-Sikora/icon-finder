@@ -1,17 +1,17 @@
 import axios from "axios";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
-import { RadioGroup } from "@headlessui/react";
 import { Inter } from "next/font/google";
+import RadioSelect from "../components/IconsPage/RadioSelect";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { AnimatePresence, motion } from "framer-motion";
-import { Link } from "react-scroll";
+import { AnimatePresence } from "framer-motion";
 import Loader from "@/components/Loader";
 import Layout from "@/Layouts/Layout";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import IconModal from "@/components/IconModal";
+import BackToTop from "@/components/IconsPage/BackToTop";
+import SingleIcon from "@/components/IconsPage/SingleIcon";
 const inter = Inter({ subsets: ["latin"] });
 export default function Icons() {
   const router = useRouter();
@@ -163,83 +163,11 @@ export default function Icons() {
           </button>
         </div>
 
-        <RadioGroup
-          value={selectedIcons}
-          onChange={setSelectedIcons}
-          className="flex  border-2 border-indigo-300/20 self-start rounded-xl"
-        >
-          <RadioGroup.Option
-            className="first:rounded-l-xl last:rounded-r-xl text-white"
-            value="social"
-          >
-            {({ checked }) => (
-              <button
-                disabled={isLoading}
-                className={` ${
-                  checked
-                    ? "bg-indigo-950 text-indigo-500"
-                    : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-bold text-sm lg:text-lg   duration-500 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
-              >
-                Social
-              </button>
-            )}
-          </RadioGroup.Option>
-          <RadioGroup.Option
-            className="first:rounded-l-xl last:rounded-r-xl text-white"
-            value="brand"
-          >
-            {({ checked }) => (
-              <button
-                disabled={isLoading}
-                className={`
-                ${
-                  checked
-                    ? "bg-indigo-950 text-indigo-500"
-                    : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-bold text-sm lg:text-lg   duration-500 cursor-pointer rounded-[inherit] hover:bg-indigo-950 `}
-              >
-                Brand
-              </button>
-            )}
-          </RadioGroup.Option>
-          <RadioGroup.Option
-            className="first:rounded-l-xl last:rounded-r-xl text-white"
-            value="solid"
-          >
-            {({ checked }) => (
-              <button
-                disabled={isLoading}
-                className={`
-                ${
-                  checked
-                    ? "bg-indigo-950 text-indigo-500"
-                    : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-bold text-sm lg:text-lg   duration-500 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
-              >
-                Solid
-              </button>
-            )}
-          </RadioGroup.Option>
-          <RadioGroup.Option
-            className="first:rounded-l-xl last:rounded-r-xl text-white"
-            value="outline"
-          >
-            {({ checked }) => (
-              <button
-                disabled={isLoading}
-                className={`
-                ${
-                  checked
-                    ? "bg-indigo-950 text-indigo-500"
-                    : "border-transparent"
-                }  relative px-3 sm:px-7 md:px-10 sm:text-base py-1.5 lg:w-48 lg:h-11  font-bold text-sm lg:text-lg   duration-500 cursor-pointer rounded-[inherit] hover:bg-indigo-950`}
-              >
-                Outline
-              </button>
-            )}
-          </RadioGroup.Option>
-        </RadioGroup>
+        <RadioSelect
+          selectedIcons={selectedIcons}
+          setSelectedIcons={setSelectedIcons}
+          isLoading={isLoading}
+        />
 
         <div
           onClick={(e) => {
@@ -271,30 +199,10 @@ export default function Icons() {
                 icon.name.toLowerCase().includes(filtered.toLowerCase())
               )
               .map((filteredIcon, index) => (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index / 55 }}
-                  title={filteredIcon.name.toLowerCase()}
-                  data-name={filteredIcon.name.toLowerCase()}
-                  data-link={filteredIcon.url}
-                  data-purp="icon-element"
-                  key={filteredIcon.url}
-                  className="w-24 relative h-24 md:w-28 md:h-28 p-3 flex flex-col cursor-pointer text-gray-50 rounded-lg  hover:bg-indigo-600 hover:shadow-lg shadow-black hover:text-white items-center justify-center "
-                >
-                  <Image
-                    alt={filteredIcon.name}
-                    width={24}
-                    height={24}
-                    className="h-full w-full p-5 -mt-2  pointer-events-none"
-                    src={`${filteredIcon.url}`}
-                  ></Image>
-                  <h2 className="text-xs absolute bottom-3 w-20 text-truncate font-semibold md:font-bold text-center md:text-xs pointer-events-none">
-                    {filteredIcon.name
-                      .toLowerCase()
-                      .substring(0, filteredIcon.name.indexOf("."))}
-                  </h2>
-                </motion.div>
+                <SingleIcon
+                  filteredIcon={filteredIcon}
+                  index={index}
+                />
               ))
           )}
         </div>
@@ -312,33 +220,7 @@ export default function Icons() {
           setIsOpenSketchPicker={setIsOpenSketchPicker}
           handleColorChange={handleColorChange}
         />
-        <AnimatePresence>
-          {backToTop && (
-            <motion.div
-              whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.1 }}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed right-10 bottom-10 bg-indigo-700 w-14 h-14 rounded-lg shadow-black/20 shadow-lg flex items-center justify-center"
-            >
-              <Link
-                className="w-full h-full rounded-lg"
-                to="top"
-                smooth={true}
-                duration={500}
-              >
-                <button className="flex items-center justify-center w-full h-full">
-                  <img
-                    className="w-1/2 h-1/2"
-                    src="./chevron-up.svg"
-                  ></img>
-                </button>
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <AnimatePresence>{backToTop && <BackToTop />}</AnimatePresence>
       </div>
     </Layout>
   );
