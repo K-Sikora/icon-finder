@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Loader from "../Loader";
-import Image from "next/image";
+import LazyLoad from "react-lazy-load";
 const SearchPanel = ({
   query,
   isLoading,
@@ -50,13 +50,13 @@ const SearchPanel = ({
                 key={icon.url}
                 className=" relative my-4 w-20 h-20 flex flex-col cursor-pointer text-gray-50 rounded-lg  hover:bg-indigo-600 hover:shadow-lg shadow-black hover:text-white items-center justify-center "
               >
-                <Image
-                  alt={icon.name}
-                  width={24}
-                  height={24}
-                  className="h-full w-full p-5 -mt-4  pointer-events-none"
-                  src={`${icon.url}`}
-                ></Image>
+                <LazyLoad className="pointer-events-none h-full w-full">
+                  <img
+                    alt={icon.name}
+                    className="h-full w-full p-5 -mt-3  pointer-events-none"
+                    src={`${icon.url}`}
+                  ></img>
+                </LazyLoad>
                 <h2 className="text-xs absolute bottom-1.5 px-2 w-20 text-truncate font-semibold md:font-bold text-center md:text-xs pointer-events-none">
                   {icon.name.toLowerCase().substring(0, icon.name.indexOf("."))}
                 </h2>
